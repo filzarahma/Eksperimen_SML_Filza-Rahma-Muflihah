@@ -1,0 +1,40 @@
+name: Preprocessing Workflow
+
+on:
+  push:
+    paths:
+      - 'preprocessing/**'
+      - '.github/workflows/preprocessing.yml'
+      - 'heart_raw.csv'
+  workflow_dispatch:
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn joblib numpy
+
+      - name: Create output directory
+        run: |
+          mkdir -p heart_preprocessing/heart_automate_output
+
+      - name: Run preprocessing script
+        run: |
+          python preprocessing/automate.py heart_raw.csv HeartDisease preprocessor_pipeline.joblib heart_preprocessing/heart_automate_output/header_data.csv
+
+      - name: Upload processed dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-dataset
+          path: heart_preprocessing/heart_automate_output/
