@@ -25,10 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas scikit-learn joblib numpy
 
-      - name: Create output directory
-        run: |
-          mkdir -p heart_preprocessing/heart_automate_output
-
       - name: Run preprocessing script
         run: |
           python preprocessing/automate_Filza-Rahma-Muflihah.py heart_raw.csv HeartDisease preprocessing/preprocessor_pipeline.joblib preprocessing/heart_preprocessing/data.csv

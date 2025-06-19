@@ -67,8 +67,11 @@ if __name__ == "__main__":
         header_path = sys.argv[4]
         data = pd.read_csv(data_path)
         X_train, X_test, y_train, y_test = preprocess_data(data, target_column, save_path, header_path)
-        outdir = os.path.dirname(header_path)
+        
+        # Membuat direktori output bernama 'heart_automate_output' di 'heart_preprocessing' jika belum ada
+        outdir = os.path.join(os.path.dirname(header_path), 'heart_automate_output')
         os.makedirs(outdir, exist_ok=True)
+
         # Simpan langsung ke CSV
         pd.DataFrame(X_train).to_csv(os.path.join(outdir, "X_train.csv"), index=False)
         pd.DataFrame(X_test).to_csv(os.path.join(outdir, "X_test.csv"), index=False)
