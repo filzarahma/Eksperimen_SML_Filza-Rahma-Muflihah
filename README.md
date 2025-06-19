@@ -1,4 +1,4 @@
-# Eksperimen_SML_Filza
+# Eksperimen_SML_Filza-Rahma-Muflihah
 
 ## Deskripsi Proyek
 
@@ -7,10 +7,10 @@ Eksperimen ini bertujuan untuk melakukan prediksi penyakit jantung menggunakan d
 ## Struktur Folder
 
 - `heart_raw.csv` : Dataset mentah.
-- `preprocessing/automate.py` : Script preprocessing otomatis.
+- `preprocessing/automate_Filza-Rahma-Muflihah.py` : Script preprocessing otomatis.
 - `preprocessing/automate.ipynb` : Notebook eksplorasi dan validasi pipeline preprocessing.
-- `preprocessing/Eksperimen_Filza.ipynb` : Notebook EDA dan preprocessing manual.
-- `preprocessing/heart_preprocessing/` : Output hasil preprocessing.
+- `preprocessing/Eksperimen_Filza-Rahma-Muflihah.ipynb` : Notebook EDA dan preprocessing manual.
+- `preprocessing/heart_preprocessing/` : Output hasil preprocessing eksperimen maupun otomatis.
 - `.github/workflows/preprocessing.yml` : Workflow GitHub Actions untuk otomatisasi preprocessing.
 
 ## Dataset

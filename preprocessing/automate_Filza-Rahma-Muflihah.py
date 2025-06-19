@@ -45,6 +45,10 @@ def preprocess_data(data, target_column, save_path, header_path):
     X = data.drop(columns=[target_column])
     y = data[target_column]
 
+    # Simpan data variabel X ke data.csv sebelum splitting
+    X.to_csv(os.path.join(os.path.dirname(header_path), 'data.csv'), index=False)
+    print(f"Data variabel X berhasil disimpan ke: {os.path.join(os.path.dirname(header_path), 'data.csv')}")
+
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     X_train = preprocessor.fit_transform(X_train)
@@ -71,4 +75,4 @@ if __name__ == "__main__":
         pd.DataFrame(y_train).to_csv(os.path.join(outdir, "y_train.csv"), index=False, header=[target_column])
         pd.DataFrame(y_test).to_csv(os.path.join(outdir, "y_test.csv"), index=False, header=[target_column])
     else:
-        print("Usage: python automate.py <data_path> <target_column> <save_path> <header_path>")
+        print("Usage: python automate_Filza-Rahma-Muflihah.py <data_path> <target_column> <save_path> <header_path>")

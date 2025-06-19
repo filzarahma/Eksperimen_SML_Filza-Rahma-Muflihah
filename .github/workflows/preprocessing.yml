@@ -31,7 +31,7 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          python preprocessing/automate_Filza-Rahma-Muflihah.py heart_raw.csv HeartDisease preprocessor_pipeline.joblib heart_preprocessing/heart_automate_output/header_data.csv
+          python preprocessing/automate_Filza-Rahma-Muflihah.py heart_raw.csv HeartDisease preprocessing/preprocessor_pipeline.joblib preprocessing/heart_preprocessing/data.csv
 
       - name: Upload processed dataset
         uses: actions/upload-artifact@v4
