@@ -45,18 +45,24 @@ def preprocess_data(data, target_column, save_path, header_path):
     X = data.drop(columns=[target_column])
     y = data[target_column]
 
-    # Simpan data variabel X ke data.csv sebelum splitting
-    X.to_csv(os.path.join(os.path.dirname(header_path), 'data.csv'), index=False)
-    print(f"Data variabel X berhasil disimpan ke: {os.path.join(os.path.dirname(header_path), 'data.csv')}")
-
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    X_train = preprocessor.fit_transform(X_train)
+    
+    # Fit transform preprocessor on X_train
+    X_train_preprocessed = preprocessor.fit_transform(X_train)
     X_test = preprocessor.transform(X_test)
+    
+    # Convert preprocessed X_train to DataFrame and use the column names from df_header
+    X_train_df = pd.DataFrame(X_train_preprocessed, columns=column_names)
+    
+    # Gabungkan df_header (hanya headernya) dengan X_train yang sudah di preprocessing
+    # Simpan ke data.csv
+    X_train_df.to_csv(os.path.join(os.path.dirname(header_path), 'data.csv'), index=False)
+    print(f"Data X_train yang sudah di preprocessing berhasil disimpan ke: {os.path.join(os.path.dirname(header_path), 'data.csv')}")
+    
     dump(preprocessor, save_path)
     print(f"Preprocessor berhasil disimpan ke: {save_path}")
 
-    return X_train, X_test, y_train, y_test
+    return X_train_preprocessed, X_test, y_train, y_test
 
 if __name__ == "__main__":
     # CLI: python automate.py <data_path> <target_column> <save_path> <header_path>
